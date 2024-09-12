@@ -5,4 +5,4 @@ google_search_results
 requests
 pymupdf
 streamlit
-python-dotenv
+python-dotenv==1.0.1
