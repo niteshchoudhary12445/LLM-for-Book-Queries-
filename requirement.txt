@@ -5,4 +5,4 @@ google_search_results
 requests
 pymupdf
 streamlit
-dotenv
+python-dotenv
