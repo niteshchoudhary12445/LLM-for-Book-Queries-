@@ -1,7 +1,7 @@
 langchain_google_genai
 langchain
 langchain_community
-google_search_results
+google-search-results
 requests
 pymupdf
 streamlit
