@@ -1,10 +1,8 @@
 import requests
 import fitz  
 from io import BytesIO
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
 api_key = os.getenv("API_KEY")
 cse_id = os.getenv("CSE_ID")
 
