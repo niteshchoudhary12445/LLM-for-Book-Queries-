@@ -6,3 +6,4 @@ requests
 pymupdf
 streamlit
 python-dotenv
+serpapi
