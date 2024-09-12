@@ -1,13 +1,13 @@
-from dotenv import load_dotenv
 from langchain_community.utilities import SerpAPIWrapper
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.memory import ConversationBufferWindowMemory
 from langchain.schema import HumanMessage
 from langchain.chains import ConversationChain
 from Search_read import request_parse
+import os
 
-# Load environment variables from .env file
-load_dotenv()
+serp_api_key = os.getenv("SERPAPI_API_KEY")
+google_llm_api = os.getenv("GOOGLE_API_KEY")
 
 class LLMLayer:
     
@@ -16,10 +16,10 @@ class LLMLayer:
         self.memory = ConversationBufferWindowMemory()
         
         # Initialize SerpAPIWrapper to handle search queries
-        self.search = SerpAPIWrapper()
+        self.search = SerpAPIWrapper(serpapi_api_key=serp_api_key)
         
         # Initialize the LLM model from Google (Gemini-1.5-flash)
-        self.model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.5)
+        self.model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.5,api_key=google_llm_api)
         
         # Set up the conversation chain that uses the model and memory for storing ongoing conversation
         self.conversation_chain = ConversationChain(llm=self.model, verbose=True, memory=self.memory)
