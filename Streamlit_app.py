@@ -15,7 +15,7 @@ llm_conv_history.memory.chat_memory.messages = st.session_state.chat_history
 
 # User input prompts
 prompt = st.text_input(label="Enter the topic you want to ask:")
-book_prompt = st.text_input(label="Enter the book-related query")
+book_prompt = st.text_input(label="Enter the book_paper_article-related query")
 
 # Initialize Supervisor instances based on user input
 supervisor_prompt = Supervisor(prompt=prompt) if prompt else None
