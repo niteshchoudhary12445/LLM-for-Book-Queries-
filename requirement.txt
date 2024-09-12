@@ -1,0 +1,8 @@
+langchain_google_genai
+langchain
+langchain_community
+google_search_results
+requests
+pymupdf
+streamlit
+dotenv
