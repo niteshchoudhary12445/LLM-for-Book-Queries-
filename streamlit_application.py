@@ -53,6 +53,7 @@ if combined_input and st.button("Search"):
     # Generate the response using the LLM layer and internal memory
     response = llm_conv_history.query_response(combined_input, st.session_state.chat_history)
 
+    # Append the user query and response to the chat history, only if not empty
     if user_query.strip():  # Avoid adding blank queries
         st.session_state.chat_history.append(HumanMessage(content=user_query.strip()))
     
