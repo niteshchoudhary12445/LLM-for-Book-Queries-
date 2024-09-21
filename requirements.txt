@@ -5,5 +5,8 @@ google-search-results
 requests
 pymupdf
 streamlit
-python-dotenv
-bs4
+xmltodict
+arxiv
+unstructured
+pdfminer.six==20201018
+unstuctured_inference
