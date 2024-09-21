@@ -12,3 +12,4 @@ pdfminer.six==20201018
 huggingface_hub
 transformers 
 torch
+accelerate
