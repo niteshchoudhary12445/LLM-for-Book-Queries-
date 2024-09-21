@@ -9,4 +9,4 @@ xmltodict
 arxiv
 unstructured
 pdfminer.six==20201018
-unstuctured_inference
+
