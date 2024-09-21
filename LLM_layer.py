@@ -16,10 +16,10 @@ class LLMLayer:
 
         # Initialize Meta-Llama-3.1-8B-Instruct model and tokenizer from Hugging Face
         self.tokenizer = AutoTokenizer.from_pretrained(
-            "meta-llama/Llama-2-8b-hf", use_auth_token=huggingface_api_token
+            "meta-llama/Meta-Llama-3.1-8B-Instruct", use_auth_token=huggingface_api_token
         )
         self.model = AutoModelForCausalLM.from_pretrained(
-            "meta-llama/Llama-2-8b-hf",
+            "meta-llama/Meta-Llama-3.1-8B-Instruct",
             use_auth_token=huggingface_api_token,
             torch_dtype=torch.float16,  # Use float16 for efficiency
             device_map="auto"  # Automatically maps the model to GPU/CPU depending on the available hardware
