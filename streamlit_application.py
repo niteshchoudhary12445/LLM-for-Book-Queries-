@@ -60,17 +60,37 @@ if combined_input and st.button("Search"):
         st.session_state.chat_history.append(AIMessage(content=response.strip()))
 
     # Display the response
-    st.write(response)
+    st.write(response.strip())
 
-# Display the conversation history in the sidebar in a readable format
+# Display the conversation history in the sidebar
 st.sidebar.title("Conversation History")
 
 if st.session_state.chat_history:
-    history = st.session_state.chat_history.strip()
+    history = st.session_state.chat_history
 
-    # Iterate over pairs of user/AI messages and avoid blank entries
     for i in range(0, len(history), 2):
-        if i < len(history):
+        if i < len(history) and history[i].content.strip():
             st.sidebar.write(f"**User**: {history[i].content}")
-        if i + 1 < len(history):
-            st.sidebar.write(f"**AI**: {history[i + 1].content}")
+        if i + 1 < len(history) and history[i + 1].content.strip():
+            st.sidebar.write(f"**AI**: {history[i + 1].content.strip()}")
+
+st.markdown(
+    """
+    <style>
+        .block-container {
+            padding-bottom: 0px;  /* This removes the white space at the bottom */
+        }
+        .sidebar .block-container {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        input[type=text] {
+            margin-bottom: 0px !important;  /* Ensures input fields have no extra space */
+        }
+        button[kind="primary"] {
+            margin-bottom: 0px !important;  /* Ensures buttons have no extra space */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
