@@ -66,11 +66,11 @@ if combined_input and st.button("Search"):
 st.sidebar.title("Conversation History")
 
 if st.session_state.chat_history:
-    history = st.session_state.chat_history
+    history = st.session_state.chat_history.strip()
 
     # Iterate over pairs of user/AI messages and avoid blank entries
     for i in range(0, len(history), 2):
-        if i < len(history) and history[i].content.strip():
+        if i < len(history):
             st.sidebar.write(f"**User**: {history[i].content}")
-        if i + 1 < len(history) and history[i + 1].content.strip():
+        if i + 1 < len(history):
             st.sidebar.write(f"**AI**: {history[i + 1].content}")
