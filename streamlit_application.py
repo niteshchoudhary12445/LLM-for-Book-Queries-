@@ -43,7 +43,8 @@ if selected_query == "Upload Document":
 else:
     # For other query types (non-document)
     user_query = st.text_input("Enter your queries:")
-    combined_input = user_query
+    if user_query:
+        combined_input = user_query
 
 if combined_input and st.button("Search"):
     # Create the Supervisor instance with the combined input
@@ -52,10 +53,14 @@ if combined_input and st.button("Search"):
     # Generate the response using the LLM layer and internal memory
     response = llm_conv_history.query_response(combined_input, st.session_state.chat_history)
 
-    # Store the user query and response in session state
-    st.session_state.chat_history.append(HumanMessage(content=user_query))
-    st.session_state.chat_history.append(AIMessage(content=response))
+    # Append the user query and response to the chat history, only if not empty
+    if user_query.strip():  # Avoid adding blank queries
+        st.session_state.chat_history.append(HumanMessage(content=user_query.strip()))
     
+    if response.strip():  # Avoid adding blank responses
+        st.session_state.chat_history.append(AIMessage(content=response.strip()))
+
+    # Display the response
     st.write(response)
 
 # Display the conversation history in the sidebar in a readable format
@@ -64,8 +69,9 @@ st.sidebar.title("Conversation History")
 if st.session_state.chat_history:
     history = st.session_state.chat_history
 
-    for i in range(0, len(history), 2):  # Iterate over pairs of user/AI messages
-        if i < len(history):
+    # Iterate over pairs of user/AI messages and avoid blank entries
+    for i in range(0, len(history), 2):
+        if i < len(history) and history[i].content.strip():
             st.sidebar.write(f"**User**: {history[i].content}")
-        if i + 1 < len(history):
+        if i + 1 < len(history) and history[i + 1].content.strip():
             st.sidebar.write(f"**AI**: {history[i + 1].content}")
