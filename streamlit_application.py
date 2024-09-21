@@ -74,21 +74,36 @@ if st.session_state.chat_history:
         if i + 1 < len(history) and history[i + 1].content.strip():
             st.sidebar.write(f"**AI**: {history[i + 1].content.strip()}")
 
+# Apply CSS styling to remove unnecessary blank spaces and adjust UI
 st.markdown(
     """
     <style>
+        /* Remove extra space from the main content */
         .block-container {
-            padding-bottom: 0px;  /* This removes the white space at the bottom */
+            padding-bottom: 0px !important;
+            padding-top: 0px !important;
+            margin-bottom: 0px !important;
         }
+        /* Remove extra padding from the sidebar */
         .sidebar .block-container {
-            padding-top: 0px;
-            padding-bottom: 0px;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            margin-bottom: 0px !important;
         }
+        /* Ensure text input fields have no margin or padding */
         input[type=text] {
-            margin-bottom: 0px !important;  /* Ensures input fields have no extra space */
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
         }
+        /* Ensure buttons have no extra margin or padding */
         button[kind="primary"] {
-            margin-bottom: 0px !important;  /* Ensures buttons have no extra space */
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
+        }
+        /* Customize the chat message style to prevent space between them */
+        .stText {
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
         }
     </style>
     """,
